@@ -1,0 +1,47 @@
+{% extends 'base_location.html' %}
+
+{% block location %}
+    <div class="container-contact100">
+		<div class="wrap-contact100">
+			<form method="post" action="">
+                {% csrf_token %}
+				<span class="contact100-form-title">
+					Create geographic region
+				</span>
+
+				<div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">Geographic region name</span>
+                    {{ form.name }}
+					<span class="focus-input100"></span>
+				</div>
+
+                <div class="wrap-input100 input100-select">
+					<span class="label-input100">Needed Services</span>
+					<div>
+
+{#                        {% for value, text in form.country.field.choices %}#}
+{#                            <option value="{{ value }}">{{ text }}</option>#}
+{#                        {% endfor %}#}
+                            {{ form.country }}
+						</select>
+					</div>
+					<span class="focus-input100"></span>
+				</div>
+
+
+				<div class="container-contact100-form-btn">
+					<div class="wrap-contact100-form-btn">
+						<div class="contact100-form-bgbtn"></div>
+						<button class="contact100-form-btn" type="submit">
+							<span>
+								Submit
+								<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+							</span>
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
+

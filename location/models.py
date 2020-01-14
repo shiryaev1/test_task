@@ -4,7 +4,8 @@ from django_countries.fields import CountryField
 
 
 class Country(models.Model):
-    name = CountryField()
+    # name = CountryField()
+    name = models.CharField(max_length=34)
 
     class Meta:
         verbose_name = _('country')
