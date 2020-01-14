@@ -78,7 +78,12 @@ class ContainerModelCreateForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['geographic_region'].queryset = GeographicRegion.objects.none()
+        self.fields['geographic_region'].queryset = \
+            GeographicRegion.objects.none()
+        self.fields['administrative_region'].queryset = \
+            AdministrativeRegion.objects.none()
+        self.fields['mark_of_quality'].queryset = \
+            MarkOfQuality.objects.none()
 
         if 'country' in self.data:
             try:
@@ -89,17 +94,34 @@ class ContainerModelCreateForm(forms.ModelForm):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
             self.fields[
-                'geographic_region'].queryset = self.instance.country.geographic_region_set.order_by(
+                'geographic_region'].queryset = \
+                self.instance.country.geographic_region_set.order_by(
                 'name')
         if 'geographic_region' in self.data:
             try:
                 geographic_region_id = int(self.data.get('geographic_region'))
                 self.fields[
-                    'administrative_region'].queryset = AdministrativeRegion.objects.filter(
+                    'administrative_region'].queryset = \
+                    AdministrativeRegion.objects.filter(
                     geographic_region_id=geographic_region_id).order_by('name')
             except (ValueError, TypeError):
                 pass  # invalid input from the client; ignore and fallback to empty City queryset
         elif self.instance.pk:
             self.fields[
-                'administrative_region'].queryset = self.instance.country.administrative_region_set.order_by(
+                'administrative_region'].queryset = \
+                self.instance.country.administrative_region_set.order_by(
+                'name')
+        if 'administrative_region' in self.data:
+            try:
+                administrative_region_id = int(self.data.get('administrative_region'))
+                self.fields[
+                    'mark_of_quality'].queryset = \
+                    MarkOfQuality.objects.filter(
+                    administrative_region_id=administrative_region_id).order_by('name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields[
+                'mark_of_quality'].queryset = \
+                self.instance.country.mark_of_quality_set.order_by(
                 'name')

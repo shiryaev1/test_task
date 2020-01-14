@@ -6,3 +6,7 @@
 {% for administrative_region in administrative_regions %}
     <option value="{{ administrative_region.pk }}">{{ administrative_region.name }}</option>
 {% endfor %}
+
+{% for mark_of_quality in mark_of_qualities %}
+    <option value="{{ mark_of_quality.pk }}">{{ mark_of_quality.name }}</option>
+{% endfor %}

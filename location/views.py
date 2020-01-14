@@ -37,7 +37,7 @@ class MarkOfQualityCreateView(LoginRequiredMixin, CreateView):
 class ContainerModelCreateView(LoginRequiredMixin, CreateView):
     model = ContainerModel
     form_class = ContainerModelCreateForm
-    success_url = reverse_lazy('location:container-model-create')
+    success_url = reverse_lazy('location:container_model_create')
 
 
 def load_cities(request):
@@ -45,10 +45,15 @@ def load_cities(request):
     cities = GeographicRegion.objects.filter(
         country_id=country_id).order_by('name')
     geographic_region_id = request.GET.get('geographic_region')
-    administrative_regions = AdministrativeRegion.objects.filter(geographic_region_id=geographic_region_id).order_by('name')
+    administrative_regions = AdministrativeRegion.objects.filter(
+        geographic_region_id=geographic_region_id).order_by('name')
+    administrative_region_id = request.GET.get('administrative_region')
+    mark_of_qualities = MarkOfQuality.objects.filter(
+        administrative_region_id=administrative_region_id).order_by('name')
     return render(request, 'location/city_dropdown_list_options.html',
                   {
                       'cities': cities,
                       'administrative_regions': administrative_regions,
+                      'mark_of_qualities': mark_of_qualities,
                    })
 
