@@ -56,3 +56,22 @@ class MarkOfQuality(models.Model):
         return self.name
 
 
+class ContainerModel(models.Model):
+    name = models.CharField(max_length=64)
+    country = models.ForeignKey(Country, blank=True, on_delete=models.CASCADE)
+    geographic_region = models.ForeignKey(GeographicRegion, blank=True,
+                                          on_delete=models.CASCADE)
+    administrative_region = models.ForeignKey(AdministrativeRegion, blank=True,
+                                              on_delete=models.CASCADE)
+    mark_of_quality = models.ForeignKey(MarkOfQuality, blank=True,
+                                        on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _('container')
+        verbose_name_plural = _('containers')
+
+    def __str__(self):
+        return self.name
+
+
+

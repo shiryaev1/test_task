@@ -1,6 +1,6 @@
 from django import forms
 from location.models import Country, MarkOfQuality, AdministrativeRegion, \
-    GeographicRegion
+    GeographicRegion, ContainerModel
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -63,3 +63,43 @@ class MarkOfQualityCreateForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.add_input(Submit('submit', 'CREATE'))
+
+
+class ContainerModelCreateForm(forms.ModelForm):
+    class Meta:
+        model = ContainerModel
+        fields = (
+            'name',
+            'country',
+            'geographic_region',
+            'administrative_region',
+            'mark_of_quality',
+        )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['geographic_region'].queryset = GeographicRegion.objects.none()
+
+        if 'country' in self.data:
+            try:
+                country_id = int(self.data.get('country'))
+                self.fields['geographic_region'].queryset = GeographicRegion.objects.filter(
+                    country_id=country_id).order_by('name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields[
+                'geographic_region'].queryset = self.instance.country.geographic_region_set.order_by(
+                'name')
+        if 'geographic_region' in self.data:
+            try:
+                geographic_region_id = int(self.data.get('geographic_region'))
+                self.fields[
+                    'administrative_region'].queryset = AdministrativeRegion.objects.filter(
+                    geographic_region_id=geographic_region_id).order_by('name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields[
+                'administrative_region'].queryset = self.instance.country.administrative_region_set.order_by(
+                'name')

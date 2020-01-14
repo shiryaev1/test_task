@@ -3,14 +3,14 @@
 {% block location %}
     <div class="container-contact100">
 		<div class="wrap-contact100">
-			<form method="post" action="">
+			<form method="post" id="containerModelForm" action="" data-cities-url="{% url 'location:ajax_load_cities' %}">
                 {% csrf_token %}
 				<span class="contact100-form-title">
 					Create mark of quality
 				</span>
 
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
-					<span class="label-input100">Mark  name</span>
+					<span class="label-input100">Object name</span>
                     {{ form.name }}
 					<span class="focus-input100"></span>
 				</div>
@@ -38,7 +38,13 @@
 					<span class="focus-input100"></span>
 				</div>
 
-
+                <div class="wrap-input100 input100-select">
+					<span class="label-input100">Mark of quality</span>
+					<div>
+                            {{ form.mark_of_quality }}
+					</div>
+					<span class="focus-input100"></span>
+				</div>
 
 				<div class="container-contact100-form-btn">
 					<div class="wrap-contact100-form-btn">
@@ -54,6 +60,36 @@
 			</form>
 		</div>
 	</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $("#id_country").change(function () {
+            var url = $("#containerModelForm").attr("data-cities-url");
+            var countryId = $(this).val();
+            $.ajax({
+                url: url,
+                data: {
+                    'country': countryId
+                },
+                success: function (data) {
+                    $("#id_geographic_region").html(data);
+                }
+            });
+        });
+        $("#id_geographic_region").change(function () {
+            var url = $("#containerModelForm").attr("data-cities-url");
+            var geographic_regionId = $(this).val();
+            $.ajax({
+                url: url,
+                data: {
+                    'geographic_region': geographic_regionId
+                },
+                success: function (data) {
+                    $("#id_administrative_region").html(data);
+                }
+            });
+        });
+    </script>
 
 {% endblock %}
 

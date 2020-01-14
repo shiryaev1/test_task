@@ -1,0 +1,8 @@
+<option value="">---------</option>
+{% for city in cities %}
+    <option value="{{ city.pk }}">{{ city.name }}</option>
+{% endfor %}
+
+{% for administrative_region in administrative_regions %}
+    <option value="{{ administrative_region.pk }}">{{ administrative_region.name }}</option>
+{% endfor %}
