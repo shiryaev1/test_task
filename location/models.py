@@ -64,8 +64,8 @@ class Package(models.Model):
     mark_of_quality = models.ForeignKey(MarkOfQuality, on_delete=models.CASCADE)
 
     class Meta:
-        verbose_name = _('container')
-        verbose_name_plural = _('containers')
+        verbose_name = _('package')
+        verbose_name_plural = _('packages')
 
     def __str__(self):
         return self.name

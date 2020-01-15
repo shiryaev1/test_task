@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_countries',
     'crispy_forms',
 
     'location',
@@ -143,4 +142,5 @@ STATICFILES_DIRS = (
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'location:city-create'
+LOGIN_REDIRECT_URL = 'location:container_model_create'
+

@@ -17,7 +17,7 @@ urlpatterns = [
          name='mark-quality-create'),
     path('package/create/', PackageCreateView.as_view(),
          name='container_model_create'),
-    path('container/', load_locations,
+    path('load/location/', load_locations,
          name='ajax_load_locations'),
 ]
 
