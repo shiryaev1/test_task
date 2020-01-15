@@ -7,7 +7,7 @@ from location.forms import CountryCreateForm, AdministrativeRegionCreateForm, \
     MarkOfQualityCreateForm, GeographicRegionCreateForm, \
     ContainerModelCreateForm
 from location.models import Country, GeographicRegion, AdministrativeRegion, \
-    MarkOfQuality, ContainerModel
+    MarkOfQuality, Package
 
 
 class CountryCreateView(LoginRequiredMixin, CreateView):
@@ -35,14 +35,14 @@ class MarkOfQualityCreateView(LoginRequiredMixin, CreateView):
 
 
 class ContainerModelCreateView(LoginRequiredMixin, CreateView):
-    model = ContainerModel
+    model = Package
     form_class = ContainerModelCreateForm
     success_url = reverse_lazy('location:container_model_create')
 
 
-def load_cities(request):
+def load_locations(request):
     country_id = request.GET.get('country')
-    cities = GeographicRegion.objects.filter(
+    geographic_regions = GeographicRegion.objects.filter(
         country_id=country_id).order_by('name')
     geographic_region_id = request.GET.get('geographic_region')
     administrative_regions = AdministrativeRegion.objects.filter(
@@ -50,9 +50,9 @@ def load_cities(request):
     administrative_region_id = request.GET.get('administrative_region')
     mark_of_qualities = MarkOfQuality.objects.filter(
         administrative_region_id=administrative_region_id).order_by('name')
-    return render(request, 'location/city_dropdown_list_options.html',
+    return render(request, 'location/location_dropdown_list_options.html',
                   {
-                      'cities': cities,
+                      'geographic_regions': geographic_regions,
                       'administrative_regions': administrative_regions,
                       'mark_of_qualities': mark_of_qualities,
                    })

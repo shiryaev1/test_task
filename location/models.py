@@ -1,10 +1,8 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from django_countries.fields import CountryField
 
 
 class Country(models.Model):
-    # name = CountryField()
     name = models.CharField(max_length=34)
 
     class Meta:
@@ -17,7 +15,7 @@ class Country(models.Model):
 
 class GeographicRegion(models.Model):
     name = models.CharField(max_length=64)
-    country = models.ForeignKey(Country, blank=True, on_delete=models.CASCADE)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('geographic region')
@@ -29,7 +27,7 @@ class GeographicRegion(models.Model):
 
 class AdministrativeRegion(models.Model):
     name = models.CharField(max_length=64)
-    geographic_region = models.ForeignKey(GeographicRegion, blank=True,
+    geographic_region = models.ForeignKey(GeographicRegion,
                                           on_delete=models.CASCADE)
 
     class Meta:
@@ -42,10 +40,10 @@ class AdministrativeRegion(models.Model):
 
 class MarkOfQuality(models.Model):
     name = models.CharField(max_length=64)
-    country = models.ForeignKey(Country, blank=True, on_delete=models.CASCADE)
-    geographic_region = models.ForeignKey(GeographicRegion, blank=True,
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    geographic_region = models.ForeignKey(GeographicRegion,
                                           on_delete=models.CASCADE)
-    administrative_region = models.ForeignKey(AdministrativeRegion, blank=True,
+    administrative_region = models.ForeignKey(AdministrativeRegion,
                                               on_delete=models.CASCADE)
 
     class Meta:
@@ -56,15 +54,14 @@ class MarkOfQuality(models.Model):
         return self.name
 
 
-class ContainerModel(models.Model):
+class Package(models.Model):
     name = models.CharField(max_length=64)
-    country = models.ForeignKey(Country, blank=True, on_delete=models.CASCADE)
-    geographic_region = models.ForeignKey(GeographicRegion, blank=True,
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    geographic_region = models.ForeignKey(GeographicRegion,
                                           on_delete=models.CASCADE)
-    administrative_region = models.ForeignKey(AdministrativeRegion, blank=True,
+    administrative_region = models.ForeignKey(AdministrativeRegion,
                                               on_delete=models.CASCADE)
-    mark_of_quality = models.ForeignKey(MarkOfQuality, blank=True,
-                                        on_delete=models.CASCADE)
+    mark_of_quality = models.ForeignKey(MarkOfQuality, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('container')

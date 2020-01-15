@@ -3,10 +3,10 @@
 {% block location %}
     <div class="container-contact100">
 		<div class="wrap-contact100">
-			<form method="post" id="containerModelForm" action="" data-cities-url="{% url 'location:ajax_load_cities' %}">
+			<form method="post" id="containerModelForm" action="" data-locations-url="{% url 'location:ajax_load_locations' %}">
                 {% csrf_token %}
 				<span class="contact100-form-title">
-					Create mark of quality
+					Create package
 				</span>
 
 				<div class="wrap-input100 validate-input" data-validate="Name is required">
@@ -64,7 +64,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         $("#id_country").change(function () {
-            var url = $("#containerModelForm").attr("data-cities-url");
+            var url = $("#containerModelForm").attr("data-locations-url");
             var countryId = $(this).val();
             $.ajax({
                 url: url,
@@ -77,7 +77,7 @@
             });
         });
         $("#id_geographic_region").change(function () {
-            var url = $("#containerModelForm").attr("data-cities-url");
+            var url = $("#containerModelForm").attr("data-locations-url");
             var geographic_regionId = $(this).val();
             $.ajax({
                 url: url,
@@ -90,7 +90,7 @@
             });
         });
         $("#id_administrative_region").change(function () {
-            var url = $("#containerModelForm").attr("data-cities-url");
+            var url = $("#containerModelForm").attr("data-locations-url");
             var administrative_regionId = $(this).val();
             $.ajax({
                 url: url,

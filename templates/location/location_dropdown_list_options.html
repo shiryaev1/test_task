@@ -1,6 +1,6 @@
 <option value="">---------</option>
-{% for city in cities %}
-    <option value="{{ city.pk }}">{{ city.name }}</option>
+{% for geographic_region in geographic_regions %}
+    <option value="{{ geographic_region.pk }}">{{ geographic_region.name }}</option>
 {% endfor %}
 
 {% for administrative_region in administrative_regions %}

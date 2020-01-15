@@ -1,6 +1,6 @@
 from django import forms
 from location.models import Country, MarkOfQuality, AdministrativeRegion, \
-    GeographicRegion, ContainerModel
+    GeographicRegion, Package
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
@@ -19,8 +19,6 @@ class CountryCreateForm(forms.ModelForm):
 
 
 class GeographicRegionCreateForm(forms.ModelForm):
-    # country = forms.ModelChoiceField(
-    #     queryset=Country.objects.all())
 
     class Meta:
         model = GeographicRegion
@@ -67,7 +65,7 @@ class MarkOfQualityCreateForm(forms.ModelForm):
 
 class ContainerModelCreateForm(forms.ModelForm):
     class Meta:
-        model = ContainerModel
+        model = Package
         fields = (
             'name',
             'country',
@@ -91,7 +89,7 @@ class ContainerModelCreateForm(forms.ModelForm):
                 self.fields['geographic_region'].queryset = GeographicRegion.objects.filter(
                     country_id=country_id).order_by('name')
             except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty City queryset
+                pass
         elif self.instance.pk:
             self.fields[
                 'geographic_region'].queryset = \
@@ -105,7 +103,7 @@ class ContainerModelCreateForm(forms.ModelForm):
                     AdministrativeRegion.objects.filter(
                     geographic_region_id=geographic_region_id).order_by('name')
             except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty City queryset
+                pass
         elif self.instance.pk:
             self.fields[
                 'administrative_region'].queryset = \
@@ -119,9 +117,9 @@ class ContainerModelCreateForm(forms.ModelForm):
                     MarkOfQuality.objects.filter(
                     administrative_region_id=administrative_region_id).order_by('name')
             except (ValueError, TypeError):
-                pass  # invalid input from the client; ignore and fallback to empty City queryset
+                pass
         elif self.instance.pk:
             self.fields[
                 'mark_of_quality'].queryset = \
-                self.instance.country.mark_of_quality_set.order_by(
+                self.instance.administrative_region.mark_of_quality_set.order_by(
                 'name')
