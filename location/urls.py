@@ -7,7 +7,7 @@ from location.views import CountryCreateView, AdministrativeRegionCreateView, \
 app_name = 'location'
 
 urlpatterns = [
-    path('city/create/', CountryCreateView.as_view(), name='city-create'),
+    path('country/create/', CountryCreateView.as_view(), name='country-create'),
     path('administrative/region/create/',
          AdministrativeRegionCreateView.as_view(),
          name='administrative-region-create'),
@@ -16,7 +16,7 @@ urlpatterns = [
     path('mark/quality/create/', MarkOfQualityCreateView.as_view(),
          name='mark-quality-create'),
     path('package/create/', PackageCreateView.as_view(),
-         name='container_model_create'),
+         name='package_create'),
     path('load/location/', load_locations,
          name='ajax_load_locations'),
 ]

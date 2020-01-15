@@ -18,7 +18,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 
+from location.views import landing_page
+
 urlpatterns = [
+    path('', landing_page),
     path('', include('account.urls')),
     path('admin/', admin.site.urls),
     path('locations/', include('location.urls'))
