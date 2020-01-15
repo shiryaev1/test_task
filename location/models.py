@@ -41,10 +41,14 @@ class AdministrativeRegion(models.Model):
 class MarkOfQuality(models.Model):
     name = models.CharField(max_length=64)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
-    geographic_region = models.ForeignKey(GeographicRegion,
-                                          on_delete=models.CASCADE)
-    administrative_region = models.ForeignKey(AdministrativeRegion,
-                                              on_delete=models.CASCADE)
+    geographic_region = models.ForeignKey(
+        GeographicRegion,
+        on_delete=models.CASCADE
+    )
+    administrative_region = models.ForeignKey(
+        AdministrativeRegion,
+        on_delete=models.CASCADE
+    )
 
     class Meta:
         verbose_name = _('mark of quality')
@@ -69,6 +73,3 @@ class Package(models.Model):
 
     def __str__(self):
         return self.name
-
-
-

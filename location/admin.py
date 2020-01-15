@@ -1,7 +1,10 @@
 from django.contrib import admin
 
-from location.models import Country, GeographicRegion, AdministrativeRegion, \
+from location.models import (
+    Country, GeographicRegion,
+    AdministrativeRegion,
     MarkOfQuality, Package
+)
 
 admin.site.register(Country)
 admin.site.register(GeographicRegion)
