@@ -3,9 +3,13 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from location.forms import CountryCreateForm, AdministrativeRegionCreateForm, \
-    MarkOfQualityCreateForm, GeographicRegionCreateForm, \
+from location.forms import (
+    CountryCreateForm,
+    AdministrativeRegionCreateForm,
+    MarkOfQualityCreateForm,
+    GeographicRegionCreateForm,
     PackageCreateForm
+)
 from location.models import Country, GeographicRegion, AdministrativeRegion, \
     MarkOfQuality, Package
 
@@ -52,7 +56,7 @@ def load_locations(request):
         administrative_region_id=administrative_region_id
     ).order_by('name')
     return render(request, 'location/location_dropdown_list_options.html', {
-                'geographic_regions': geographic_regions,
-                'administrative_regions': administrative_regions,
-                'mark_of_qualities': mark_of_qualities,
-            })
+        'geographic_regions': geographic_regions,
+        'administrative_regions': administrative_regions,
+        'mark_of_qualities': mark_of_qualities,
+    })
