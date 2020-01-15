@@ -5,7 +5,7 @@ from django.views.generic import CreateView
 
 from location.forms import CountryCreateForm, AdministrativeRegionCreateForm, \
     MarkOfQualityCreateForm, GeographicRegionCreateForm, \
-    ContainerModelCreateForm
+    PackageCreateForm
 from location.models import Country, GeographicRegion, AdministrativeRegion, \
     MarkOfQuality, Package
 
@@ -34,9 +34,9 @@ class MarkOfQualityCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('location:mark-quality-create')
 
 
-class ContainerModelCreateView(LoginRequiredMixin, CreateView):
+class PackageCreateView(LoginRequiredMixin, CreateView):
     model = Package
-    form_class = ContainerModelCreateForm
+    form_class = PackageCreateForm
     success_url = reverse_lazy('location:container_model_create')
 
 

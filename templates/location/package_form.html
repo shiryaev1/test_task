@@ -1,4 +1,6 @@
 {% extends 'base_location.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
 
 {% block location %}
     <div class="container-contact100">
@@ -18,7 +20,7 @@
                 <div class="wrap-input100 input100-select">
 					<span class="label-input100">Country</span>
 					<div>
-                            {{ form.country }}
+                                {{ form.country }}
 					</div>
 					<span class="focus-input100"></span>
 				</div>
@@ -62,47 +64,10 @@
 	</div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script>
-        $("#id_country").change(function () {
-            var url = $("#containerModelForm").attr("data-locations-url");
-            var countryId = $(this).val();
-            $.ajax({
-                url: url,
-                data: {
-                    'country': countryId
-                },
-                success: function (data) {
-                    $("#id_geographic_region").html(data);
-                }
-            });
-        });
-        $("#id_geographic_region").change(function () {
-            var url = $("#containerModelForm").attr("data-locations-url");
-            var geographic_regionId = $(this).val();
-            $.ajax({
-                url: url,
-                data: {
-                    'geographic_region': geographic_regionId
-                },
-                success: function (data) {
-                    $("#id_administrative_region").html(data);
-                }
-            });
-        });
-        $("#id_administrative_region").change(function () {
-            var url = $("#containerModelForm").attr("data-locations-url");
-            var administrative_regionId = $(this).val();
-            $.ajax({
-                url: url,
-                data: {
-                    'administrative_region': administrative_regionId
-                },
-                success: function (data) {
-                    $("#id_mark_of_quality").html(data);
-                }
-            });
-        });
-    </script>
+    <script src="{% static 'js/geographic_region_options.js' %}"></script>
+    <script src="{% static 'js/administrative_region_options.js' %}"></script>
+    <script src="{% static 'js/mark_of_quality_options.js' %}"></script>
+
 
 {% endblock %}
 

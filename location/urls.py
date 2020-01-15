@@ -2,7 +2,7 @@ from django.urls import path
 
 from location.views import CountryCreateView, AdministrativeRegionCreateView, \
     GeographicRegionCreateView, MarkOfQualityCreateView, \
-    ContainerModelCreateView, load_locations
+    PackageCreateView, load_locations
 
 app_name = 'location'
 
@@ -15,7 +15,7 @@ urlpatterns = [
          name='geographic-region-create'),
     path('mark/quality/create/', MarkOfQualityCreateView.as_view(),
          name='mark-quality-create'),
-    path('container/model/create/', ContainerModelCreateView.as_view(),
+    path('package/create/', PackageCreateView.as_view(),
          name='container_model_create'),
     path('container/', load_locations,
          name='ajax_load_locations'),

@@ -63,7 +63,7 @@ class MarkOfQualityCreateForm(forms.ModelForm):
         self.helper.add_input(Submit('submit', 'CREATE'))
 
 
-class ContainerModelCreateForm(forms.ModelForm):
+class PackageCreateForm(forms.ModelForm):
     class Meta:
         model = Package
         fields = (
@@ -86,7 +86,8 @@ class ContainerModelCreateForm(forms.ModelForm):
         if 'country' in self.data:
             try:
                 country_id = int(self.data.get('country'))
-                self.fields['geographic_region'].queryset = GeographicRegion.objects.filter(
+                self.fields['geographic_region'].queryset = \
+                    GeographicRegion.objects.filter(
                     country_id=country_id).order_by('name')
             except (ValueError, TypeError):
                 pass
@@ -107,11 +108,13 @@ class ContainerModelCreateForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields[
                 'administrative_region'].queryset = \
-                self.instance.country.administrative_region_set.order_by(
+                self.instance.geographic_region.administrative_region_set.order_by(
                 'name')
         if 'administrative_region' in self.data:
             try:
-                administrative_region_id = int(self.data.get('administrative_region'))
+                administrative_region_id = int(self.data.get(
+                    'administrative_region'
+                ))
                 self.fields[
                     'mark_of_quality'].queryset = \
                     MarkOfQuality.objects.filter(
