@@ -14,31 +14,31 @@ from location.models import Country, GeographicRegion, AdministrativeRegion, \
     MarkOfQuality, Package
 
 
-class CountryCreateView(LoginRequiredMixin, CreateView):
+class CountryCreateView(CreateView):
     model = Country
     form_class = CountryCreateForm
     success_url = reverse_lazy('location:country-create')
 
 
-class GeographicRegionCreateView(LoginRequiredMixin, CreateView):
+class GeographicRegionCreateView(CreateView):
     model = GeographicRegion
     form_class = GeographicRegionCreateForm
     success_url = reverse_lazy('location:geographic-region-create')
 
 
-class AdministrativeRegionCreateView(LoginRequiredMixin, CreateView):
+class AdministrativeRegionCreateView(CreateView):
     model = AdministrativeRegion
     form_class = AdministrativeRegionCreateForm
     success_url = reverse_lazy('location:administrative-region-create')
 
 
-class MarkOfQualityCreateView(LoginRequiredMixin, CreateView):
+class MarkOfQualityCreateView(CreateView):
     model = MarkOfQuality
     form_class = MarkOfQualityCreateForm
     success_url = reverse_lazy('location:mark-quality-create')
 
 
-class PackageCreateView(LoginRequiredMixin, CreateView):
+class PackageCreateView(CreateView):
     model = Package
     form_class = PackageCreateForm
     success_url = reverse_lazy('location:package_create')
