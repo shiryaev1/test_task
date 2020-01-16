@@ -3,6 +3,13 @@
 {% block location %}
     <div class="container-contact100">
 		<div class="wrap-contact100">
+            {% if messages %}
+                <div class="alert alert-warning">
+                    {% for message in messages %}
+                      <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
 			<form method="post" action="">
                 {% csrf_token %}
 				<span class="contact100-form-title">

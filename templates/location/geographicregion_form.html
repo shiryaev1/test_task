@@ -3,6 +3,13 @@
 {% block location %}
     <div class="container-contact100">
 		<div class="wrap-contact100">
+            {% if messages %}
+                <div class="alert alert-warning">
+                    {% for message in messages %}
+                      <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
 			<form method="post" action="">
                 {% csrf_token %}
 				<span class="contact100-form-title">
@@ -18,12 +25,7 @@
                 <div class="wrap-input100 input100-select">
 					<span class="label-input100">Needed Services</span>
 					<div>
-
-{#                        {% for value, text in form.country.field.choices %}#}
-{#                            <option value="{{ value }}">{{ text }}</option>#}
-{#                        {% endfor %}#}
                             {{ form.country }}
-						</select>
 					</div>
 					<span class="focus-input100"></span>
 				</div>

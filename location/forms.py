@@ -1,4 +1,6 @@
 from django import forms
+from django.http import Http404
+
 from location.models import (
     Country, MarkOfQuality,
     AdministrativeRegion,
@@ -96,7 +98,7 @@ class PackageCreateForm(forms.ModelForm):
                     country_id=country_id
                 ).order_by('name')
             except (ValueError, TypeError):
-                pass
+                raise Http404
         elif self.instance.pk:
             self.fields['geographic_region'].queryset = self.instance.country.geographic_regions.order_by(
                 'name'
@@ -111,7 +113,7 @@ class PackageCreateForm(forms.ModelForm):
                         geographic_region_id=geographic_region_id
                 ).order_by('name')
             except (ValueError, TypeError):
-                pass
+                raise Http404
         elif self.instance.pk:
             self.fields[
                 'administrative_region'].queryset = \
@@ -128,7 +130,7 @@ class PackageCreateForm(forms.ModelForm):
                         administrative_region_id=administrative_region_id
                 ).order_by('name')
             except (ValueError, TypeError):
-                pass
+                raise Http404
         elif self.instance.pk:
             self.fields[
                 'mark_of_quality'].queryset = self.instance.administrative_region.mark_of_qualities.order_by(

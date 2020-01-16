@@ -5,6 +5,13 @@
 {% block location %}
     <div class="container-contact100">
 		<div class="wrap-contact100">
+            {% if messages %}
+                <div class="alert alert-warning">
+                    {% for message in messages %}
+                      <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
 			<form method="post" id="containerModelForm" action="" data-locations-url="{% url 'location:ajax_load_locations' %}">
                 {% csrf_token %}
 				<span class="contact100-form-title">

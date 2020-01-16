@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
@@ -13,34 +14,39 @@ from location.models import Country, GeographicRegion, AdministrativeRegion, \
     MarkOfQuality, Package
 
 
-class CountryCreateView(LoginRequiredMixin, CreateView):
+class CountryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Country
     form_class = CountryCreateForm
     success_url = reverse_lazy('location:country-create')
+    success_message = 'Country was created successfully'
 
 
-class GeographicRegionCreateView(LoginRequiredMixin, CreateView):
+class GeographicRegionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = GeographicRegion
     form_class = GeographicRegionCreateForm
     success_url = reverse_lazy('location:geographic-region-create')
+    success_message = 'Geographic region was created successfully'
 
 
-class AdministrativeRegionCreateView(LoginRequiredMixin, CreateView):
+class AdministrativeRegionCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = AdministrativeRegion
     form_class = AdministrativeRegionCreateForm
     success_url = reverse_lazy('location:administrative-region-create')
+    success_message = 'Administrative region was created successfully'
 
 
-class MarkOfQualityCreateView(LoginRequiredMixin, CreateView):
+class MarkOfQualityCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = MarkOfQuality
     form_class = MarkOfQualityCreateForm
     success_url = reverse_lazy('location:mark-quality-create')
+    success_message = 'Mark of quality was created successfully'
 
 
-class PackageCreateView(LoginRequiredMixin, CreateView):
+class PackageCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Package
     form_class = PackageCreateForm
     success_url = reverse_lazy('location:package_create')
+    success_message = 'Package was created successfully'
 
 
 class LoadLocations(ListView):
