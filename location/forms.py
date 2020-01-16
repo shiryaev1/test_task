@@ -98,7 +98,7 @@ class PackageCreateForm(forms.ModelForm):
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:
-            self.fields['geographic_region'].queryset = self.instance.country.geographic_region_set.order_by(
+            self.fields['geographic_region'].queryset = self.instance.country.geographic_regions.order_by(
                 'name'
             )
 
@@ -115,7 +115,7 @@ class PackageCreateForm(forms.ModelForm):
         elif self.instance.pk:
             self.fields[
                 'administrative_region'].queryset = \
-                self.instance.geographic_region.administrative_region_set.order_by(
+                self.instance.geographic_region.administrative_regions.order_by(
                     'name')
 
     def set_mark_of_quality_queryset(self):
@@ -131,6 +131,6 @@ class PackageCreateForm(forms.ModelForm):
                 pass
         elif self.instance.pk:
             self.fields[
-                'mark_of_quality'].queryset = self.instance.administrative_region.mark_of_quality_set.order_by(
+                'mark_of_quality'].queryset = self.instance.administrative_region.mark_of_qualities.order_by(
                     'name'
             )
