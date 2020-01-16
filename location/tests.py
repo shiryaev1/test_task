@@ -51,16 +51,11 @@ class LocationTestCase(TestCase):
     def setUp(self):
         super().setUp()
 
-        username, password = 'admin', 'secret'
-        User.objects.create_user(username=username, email='info@throgate.eu',
-                                 password=password)
-
-        self.authenticated_client = Client()
-        self.authenticated_client.login(username=username, password=password)
+        self.client = Client()
 
     def test_country_create(self):
 
-        response = self.authenticated_client.post('/locations/country/create/', {
+        response = self.client.post('/locations/country/create/', {
             'name': 'Test country'
         })
 
@@ -68,7 +63,7 @@ class LocationTestCase(TestCase):
 
     def test_geographic_region_create(self):
 
-        response = self.authenticated_client.post('/locations/geographic/region/create/', {
+        response = self.client.post('/locations/geographic/region/create/', {
             'name': 'Test geographic region',
             'country': create_country()
         })
@@ -77,7 +72,7 @@ class LocationTestCase(TestCase):
 
     def test_administrative_region_create(self):
 
-        response = self.authenticated_client.post('/locations/administrative/region/create/', {
+        response = self.client.post('/locations/administrative/region/create/', {
             'name': 'Test administrative region',
             'geographic_region': create_geographic_region()
         })
@@ -86,7 +81,7 @@ class LocationTestCase(TestCase):
 
     def test_mark_of_quality_create(self):
 
-        response = self.authenticated_client.post('/locations/mark/quality/create/', {
+        response = self.client.post('/locations/mark/quality/create/', {
             'name': 'Test mark of quality',
             'country': create_country(),
             'geographic_region': create_geographic_region(),
@@ -97,7 +92,7 @@ class LocationTestCase(TestCase):
 
     def test_package_create(self):
 
-        response = self.authenticated_client.post(
+        response = self.client.post(
             '/locations/package/create/', {
                 'name': 'Test package',
                 'country': create_country(),
