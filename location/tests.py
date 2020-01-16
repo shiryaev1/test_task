@@ -1,7 +1,10 @@
 from django.test import TestCase, Client
 
-from location.models import Country, GeographicRegion, AdministrativeRegion, \
+from location.models import (
+    Country, GeographicRegion,
+    AdministrativeRegion,
     MarkOfQuality, Package
+)
 
 
 def create_country():

@@ -1,8 +1,13 @@
 from django.urls import path
 
-from location.views import CountryCreateView, AdministrativeRegionCreateView, \
-    GeographicRegionCreateView, MarkOfQualityCreateView, \
-    PackageCreateView, LoadLocations
+from location.views import (
+    CountryCreateView,
+    AdministrativeRegionCreateView,
+    GeographicRegionCreateView,
+    MarkOfQualityCreateView,
+    PackageCreateView,
+    LoadLocations
+)
 
 app_name = 'location'
 

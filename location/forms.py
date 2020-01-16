@@ -1,6 +1,9 @@
 from django import forms
-from location.models import Country, MarkOfQuality, AdministrativeRegion, \
+from location.models import (
+    Country, MarkOfQuality,
+    AdministrativeRegion,
     GeographicRegion, Package
+)
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit
 
