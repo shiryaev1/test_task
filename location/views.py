@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
@@ -13,31 +13,31 @@ from location.models import Country, GeographicRegion, AdministrativeRegion, \
     MarkOfQuality, Package
 
 
-class CountryCreateView(CreateView):
+class CountryCreateView(LoginRequiredMixin, CreateView):
     model = Country
     form_class = CountryCreateForm
     success_url = reverse_lazy('location:country-create')
 
 
-class GeographicRegionCreateView(CreateView):
+class GeographicRegionCreateView(LoginRequiredMixin, CreateView):
     model = GeographicRegion
     form_class = GeographicRegionCreateForm
     success_url = reverse_lazy('location:geographic-region-create')
 
 
-class AdministrativeRegionCreateView(CreateView):
+class AdministrativeRegionCreateView(LoginRequiredMixin, CreateView):
     model = AdministrativeRegion
     form_class = AdministrativeRegionCreateForm
     success_url = reverse_lazy('location:administrative-region-create')
 
 
-class MarkOfQualityCreateView(CreateView):
+class MarkOfQualityCreateView(LoginRequiredMixin, CreateView):
     model = MarkOfQuality
     form_class = MarkOfQualityCreateForm
     success_url = reverse_lazy('location:mark-quality-create')
 
 
-class PackageCreateView(CreateView):
+class PackageCreateView(LoginRequiredMixin, CreateView):
     model = Package
     form_class = PackageCreateForm
     success_url = reverse_lazy('location:package_create')
@@ -90,7 +90,4 @@ class LoadLocations(ListView):
         context['mark_of_qualities'] = self.load_mark_of_qualities()
         return context
 
-
-def landing_page(request):
-    return render(request, 'landing.html')
 

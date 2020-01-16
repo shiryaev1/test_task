@@ -142,5 +142,5 @@ STATICFILES_DIRS = (
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'location:container_model_create'
+LOGIN_REDIRECT_URL = 'location:package_create'
 

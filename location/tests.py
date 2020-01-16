@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.test import TestCase, Client
 
 from location.models import (
@@ -53,49 +54,132 @@ class LocationTestCase(TestCase):
     def setUp(self):
         super().setUp()
 
+        username, password = 'admin', 'secret'
+        User.objects.create_user(username=username, password=password)
+
+        self.authenticated_client = Client()
+        self.authenticated_client.login(username=username, password=password)
+
         self.client = Client()
 
     def test_country_create(self):
+        url = '/locations/country/create/'
+        # Anonymous users can't create country
 
-        response = self.client.post('/locations/country/create/', {
-            'name': 'Test country'
-        })
+        response = self.client.post(
+            url, {
+                'name': 'Test country'
+            })
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response,
+                             f'/login/?next={url}')
 
-        self.assertRedirects(response, '/locations/country/create/')
+        # Authenticated users can create country
+
+        response = self.authenticated_client.post(
+            url, {
+                'name': 'Test country'
+            })
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response, url)
 
     def test_geographic_region_create(self):
+        url = '/locations/geographic/region/create/'
+        # Anonymous users can't create geographic region
 
-        response = self.client.post('/locations/geographic/region/create/', {
-            'name': 'Test geographic region',
-            'country': create_country()
-        })
+        response = self.client.post(
+            url, {
+                'name': 'Test geographic region',
+                'country': create_country()
+            })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response,
+                             f'/login/?next={url}')
+
+        # Authenticated users can create geographic region
+
+        response = self.authenticated_client.post(
+            url, {
+                'name': 'Test geographic region',
+                'country': create_country()
+            })
 
         self.assertEqual(response.status_code, 200)
 
     def test_administrative_region_create(self):
+        url = '/locations/administrative/region/create/'
+        # Anonymous users can't create administrative region
 
-        response = self.client.post('/locations/administrative/region/create/', {
-            'name': 'Test administrative region',
-            'geographic_region': create_geographic_region()
-        })
+        response = self.client.post(
+            url, {
+                'name': 'Test administrative region',
+                'geographic_region': create_geographic_region()
+            })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response,
+                             f'/login/?next={url}')
+
+        # Authenticated users can create administrative region
+
+        response = self.authenticated_client.post(
+            url, {
+                'name': 'Test administrative region',
+                'geographic_region': create_geographic_region()
+            })
 
         self.assertEqual(response.status_code, 200)
 
     def test_mark_of_quality_create(self):
+        url = '/locations/mark/quality/create/'
+        # Anonymous users can't create  mark of quality
 
-        response = self.client.post('/locations/mark/quality/create/', {
-            'name': 'Test mark of quality',
-            'country': create_country(),
-            'geographic_region': create_geographic_region(),
-            'administrative_region': create_administrative_region()
-        })
+        response = self.client.post(
+            url, {
+                'name': 'Test mark of quality',
+                'country': create_country(),
+                'geographic_region': create_geographic_region(),
+                'administrative_region': create_administrative_region()
+            })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response,
+                             f'/login/?next={url}')
+
+        # Authenticated users can create mark of quality
+
+        response = self.authenticated_client.post(
+            url, {
+                'name': 'Test mark of quality',
+                'country': create_country(),
+                'geographic_region': create_geographic_region(),
+                'administrative_region': create_administrative_region()
+            })
 
         self.assertEqual(response.status_code, 200)
 
     def test_package_create(self):
+        url = '/locations/package/create/'
+        # Anonymous users can't create package
 
         response = self.client.post(
-            '/locations/package/create/', {
+            url, {
+                'name': 'Test package',
+                'country': create_country(),
+                'geographic_region': create_geographic_region(),
+                'administrative_region': create_administrative_region(),
+                'package': create_package()
+            })
+
+        self.assertEqual(response.status_code, 302)
+        self.assertRedirects(response,
+                             f'/login/?next={url}')
+
+        # Authenticated users can create package
+
+        response = self.authenticated_client.post(
+            url, {
                 'name': 'Test package',
                 'country': create_country(),
                 'geographic_region': create_geographic_region(),
@@ -104,5 +188,3 @@ class LocationTestCase(TestCase):
             })
 
         self.assertEqual(response.status_code, 200)
-
-
