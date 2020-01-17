@@ -67,8 +67,9 @@ class LoadLocations(ListView):
             return administrative_regions
 
         if self.request.GET.get('administrative_region'):
-
-            administrative_region_id = self.request.GET.get('administrative_region')
+            administrative_region_id = self.request.GET.get(
+                'administrative_region'
+            )
             mark_of_qualities = MarkOfQuality.objects.filter(
                 administrative_region_id=administrative_region_id
             ).order_by('name')
