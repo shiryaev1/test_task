@@ -7,8 +7,8 @@ class AuthenticationTestCase(TestCase):
     def setUp(self):
         super().setUp()
 
-        self.username = 'Thorgate'
-        self.password = 'thorgate123'
+        self.username = 'Admin'
+        self.password = 'secret'
 
         self.authenticated_user = User.objects.create_user(
             username=self.username,
@@ -29,7 +29,7 @@ class AuthenticationTestCase(TestCase):
         # Authenticated user should be redirected to the assignment page
 
         response = self.authenticated_client.get('/login/')
-        self.assertRedirects(response, '/', 302, 200)
+        self.assertRedirects(response, '/locations/package/create/', 302, 200)
 
     def test_login_form(self):
         # There should be the login form in the context
@@ -63,7 +63,7 @@ class AuthenticationTestCase(TestCase):
 
         client = Client()
         response = client.post('/login/', {'username': self.username, 'password': self.password})
-        self.assertRedirects(response, '/', 302, 200)
+        self.assertRedirects(response, '/locations/package/create/', 302, 200)
 
     def test_logout_view(self):
         # Authenticated user should get a redirect after logging out
