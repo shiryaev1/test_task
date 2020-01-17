@@ -1,8 +1,11 @@
 document.querySelector('#id_administrative_region').onchange = function getMarkOfQuality() {
-    let url = '/locations/load/location/';
+    let endpoint = '/locations/load/location/';
     let xhr = new XMLHttpRequest();
     let administrativeRegionId = this.value;
-    let parameters = `administrative_region=${administrativeRegionId}`;
+    const parameter = new URLSearchParams({
+        administrative_region: administrativeRegionId,
+    });
+    let url = endpoint + '?' + parameter;
 
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
@@ -10,6 +13,6 @@ document.querySelector('#id_administrative_region').onchange = function getMarkO
         }
       };
 
-    xhr.open("GET", url + '?' + parameters, true);
+    xhr.open("GET", url, true);
     xhr.send();
 };

@@ -1,8 +1,11 @@
 document.querySelector('#id_geographic_region').onchange = function getAdministrativeRegion() {
-    let url = '/locations/load/location/';
+    let endpoint = '/locations/load/location/';
     let xhr = new XMLHttpRequest();
     let geographicRegionId = this.value;
-    let parameters = `geographic_region=${geographicRegionId}`;
+    const parameter = new URLSearchParams({
+        geographic_region: geographicRegionId,
+    });
+    let url = endpoint + '?' + parameter;
 
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
@@ -10,6 +13,6 @@ document.querySelector('#id_geographic_region').onchange = function getAdministr
         }
       };
 
-    xhr.open("GET", url + '?' + parameters, true);
+    xhr.open("GET", url, true);
     xhr.send();
 };

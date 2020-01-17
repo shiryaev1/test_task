@@ -13,7 +13,7 @@ Install requirements:
 
     pip install -r requirements.txt
 
-Load initial data for projects:
+Load initial data for locations:
 
     python manage.py loaddata location/fixtures/location.json
 
