@@ -1,164 +1,476 @@
 [
   {
     "model": "location.country",
-    "pk": 1,
+    "pk": 23,
     "fields": {
-      "name": "Belarus"
+      "name": "Afghanistan"
     }
   },
   {
     "model": "location.country",
-    "pk": 2,
+    "pk": 24,
     "fields": {
-      "name": "Germany"
+      "name": "Andorra"
+    }
+  },
+  {
+    "model": "location.country",
+    "pk": 25,
+    "fields": {
+      "name": "Argentina"
+    }
+  },
+  {
+    "model": "location.country",
+    "pk": 26,
+    "fields": {
+      "name": "Brazil"
+    }
+  },
+  {
+    "model": "location.country",
+    "pk": 27,
+    "fields": {
+      "name": "France"
+    }
+  },
+  {
+    "model": "location.country",
+    "pk": 28,
+    "fields": {
+      "name": "Poland"
     }
   },
   {
     "model": "location.geographicregion",
-    "pk": 7,
-    "fields": {
-      "name": "Minsk region",
-      "country": 1
-    }
-  },
-  {
-    "model": "location.geographicregion",
-    "pk": 8,
-    "fields": {
-      "name": "Baern region",
-      "country": 2
-    }
-  },
-  {
-    "model": "location.geographicregion",
-    "pk": 9,
-    "fields": {
-      "name": "Gomel region",
-      "country": 1
-    }
-  },
-  {
-    "model": "location.administrativeregion",
-    "pk": 3,
-    "fields": {
-      "name": "Munchen",
-      "geographic_region": 8
-    }
-  },
-  {
-    "model": "location.administrativeregion",
-    "pk": 4,
-    "fields": {
-      "name": "Nesvizh region",
-      "geographic_region": 7
-    }
-  },
-  {
-    "model": "location.markofquality",
-    "pk": 5,
-    "fields": {
-      "name": "AUDI",
-      "country": 2,
-      "geographic_region": 8,
-      "administrative_region": 3
-    }
-  },
-  {
-    "model": "location.markofquality",
-    "pk": 6,
-    "fields": {
-      "name": "BelAZ",
-      "country": 1,
-      "geographic_region": 7,
-      "administrative_region": 4
-    }
-  },
-  {
-    "model": "location.package",
-    "pk": 3,
-    "fields": {
-      "name": "Audi A6",
-      "country": 2,
-      "geographic_region": 8,
-      "administrative_region": 3,
-      "mark_of_quality": 5
-    }
-  },
-  {
-    "model": "location.package",
-    "pk": 4,
-    "fields": {
-      "name": "wheel",
-      "country": 1,
-      "geographic_region": 7,
-      "administrative_region": 4,
-      "mark_of_quality": 6
-    }
-  },
-  {
-    "model": "location.package",
-    "pk": 6,
-    "fields": {
-      "name": "Audi 80",
-      "country": 2,
-      "geographic_region": 8,
-      "administrative_region": 3,
-      "mark_of_quality": 5
-    }
-  },
-  {
-    "model": "location.package",
     "pk": 10,
     "fields": {
-      "name": "Thorgate",
-      "country": 2,
-      "geographic_region": 8,
-      "administrative_region": 3,
-      "mark_of_quality": 5
+      "name": "Eastern Europe",
+      "country": 28
     }
   },
   {
-    "model": "location.package",
+    "model": "location.geographicregion",
     "pk": 11,
     "fields": {
-      "name": "wheel_v1",
-      "country": 1,
-      "geographic_region": 7,
-      "administrative_region": 4,
-      "mark_of_quality": 6
+      "name": "Western Europe",
+      "country": 27
     }
   },
   {
-    "model": "location.package",
+    "model": "location.geographicregion",
     "pk": 12,
     "fields": {
-      "name": "Audi a8",
-      "country": 2,
-      "geographic_region": 8,
-      "administrative_region": 3,
-      "mark_of_quality": 5
+      "name": "\u0421entral Asia",
+      "country": 23
     }
   },
   {
-    "model": "location.package",
+    "model": "location.geographicregion",
     "pk": 13,
     "fields": {
-      "name": "Audi 100",
-      "country": 2,
-      "geographic_region": 8,
-      "administrative_region": 3,
-      "mark_of_quality": 5
+      "name": "Iberian Peninsula",
+      "country": 24
     }
   },
   {
-    "model": "location.package",
+    "model": "location.geographicregion",
     "pk": 14,
     "fields": {
-      "name": "Audi 100",
-      "country": 2,
-      "geographic_region": 8,
-      "administrative_region": 3,
-      "mark_of_quality": 5
+      "name": "Argentine Northwest",
+      "country": 25
+    }
+  },
+  {
+    "model": "location.geographicregion",
+    "pk": 15,
+    "fields": {
+      "name": "Gran Chaco",
+      "country": 25
+    }
+  },
+  {
+    "model": "location.geographicregion",
+    "pk": 16,
+    "fields": {
+      "name": "The Argentine Mesopotamia",
+      "country": 25
+    }
+  },
+  {
+    "model": "location.geographicregion",
+    "pk": 17,
+    "fields": {
+      "name": "Pampin Sierras",
+      "country": 25
+    }
+  },
+  {
+    "model": "location.geographicregion",
+    "pk": 18,
+    "fields": {
+      "name": "Pampas",
+      "country": 25
+    }
+  },
+  {
+    "model": "location.geographicregion",
+    "pk": 19,
+    "fields": {
+      "name": "South America",
+      "country": 26
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 6,
+    "fields": {
+      "name": "ACRI",
+      "geographic_region": 19
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 7,
+    "fields": {
+      "name": "alagoas",
+      "geographic_region": 19
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 8,
+    "fields": {
+      "name": "Roraima",
+      "geographic_region": 19
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 9,
+    "fields": {
+      "name": "Catamarca",
+      "geographic_region": 18
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 10,
+    "fields": {
+      "name": "Chubut",
+      "geographic_region": 18
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 11,
+    "fields": {
+      "name": "Cordoba",
+      "geographic_region": 17
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 12,
+    "fields": {
+      "name": "Jujuy",
+      "geographic_region": 17
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 13,
+    "fields": {
+      "name": "Neuquen",
+      "geographic_region": 17
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 14,
+    "fields": {
+      "name": "Rio Negro",
+      "geographic_region": 16
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 15,
+    "fields": {
+      "name": "Salt",
+      "geographic_region": 15
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 16,
+    "fields": {
+      "name": "San juan",
+      "geographic_region": 15
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 17,
+    "fields": {
+      "name": "San louis",
+      "geographic_region": 14
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 18,
+    "fields": {
+      "name": "Santa fe",
+      "geographic_region": 14
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 19,
+    "fields": {
+      "name": "Andorra la Vella",
+      "geographic_region": 13
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 20,
+    "fields": {
+      "name": "Canillo",
+      "geographic_region": 13
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 21,
+    "fields": {
+      "name": "Encamp",
+      "geographic_region": 13
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 22,
+    "fields": {
+      "name": "Balkh",
+      "geographic_region": 12
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 23,
+    "fields": {
+      "name": "Vardak",
+      "geographic_region": 12
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 24,
+    "fields": {
+      "name": "Helmand",
+      "geographic_region": 12
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 25,
+    "fields": {
+      "name": "New Aquitaine",
+      "geographic_region": 11
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 26,
+    "fields": {
+      "name": "Normandy",
+      "geographic_region": 11
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 27,
+    "fields": {
+      "name": "Warszawa",
+      "geographic_region": 10
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 28,
+    "fields": {
+      "name": "Opole",
+      "geographic_region": 10
+    }
+  },
+  {
+    "model": "location.administrativeregion",
+    "pk": 29,
+    "fields": {
+      "name": "Kielce",
+      "geographic_region": 10
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 7,
+    "fields": {
+      "name": "Ita\u00fa",
+      "country": 26,
+      "geographic_region": 19,
+      "administrative_region": 16
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 8,
+    "fields": {
+      "name": "Pepsodent",
+      "country": 24,
+      "geographic_region": 12,
+      "administrative_region": 9
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 9,
+    "fields": {
+      "name": "Bimbo",
+      "country": 25,
+      "geographic_region": 12,
+      "administrative_region": 12
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 10,
+    "fields": {
+      "name": "Sprite",
+      "country": 27,
+      "geographic_region": 17,
+      "administrative_region": 12
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 11,
+    "fields": {
+      "name": "Palmolive",
+      "country": 27,
+      "geographic_region": 18,
+      "administrative_region": 17
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 12,
+    "fields": {
+      "name": "Downy",
+      "country": 26,
+      "geographic_region": 18,
+      "administrative_region": 24
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 13,
+    "fields": {
+      "name": "Sunlight",
+      "country": 27,
+      "geographic_region": 14,
+      "administrative_region": 21
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 14,
+    "fields": {
+      "name": "Nestl\u00e9",
+      "country": 23,
+      "geographic_region": 15,
+      "administrative_region": 15
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 15,
+    "fields": {
+      "name": "Lux",
+      "country": 27,
+      "geographic_region": 16,
+      "administrative_region": 7
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 16,
+    "fields": {
+      "name": "Dove",
+      "country": 28,
+      "geographic_region": 12,
+      "administrative_region": 20
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 17,
+    "fields": {
+      "name": "Knorr",
+      "country": 27,
+      "geographic_region": 10,
+      "administrative_region": 23
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 18,
+    "fields": {
+      "name": "Sunsilk",
+      "country": 27,
+      "geographic_region": 18,
+      "administrative_region": 10
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 19,
+    "fields": {
+      "name": "Indomie",
+      "country": 28,
+      "geographic_region": 18,
+      "administrative_region": 8
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 20,
+    "fields": {
+      "name": "Nescaf\u00e9",
+      "country": 25,
+      "geographic_region": 14,
+      "administrative_region": 21
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 21,
+    "fields": {
+      "name": "Pepsi",
+      "country": 24,
+      "geographic_region": 19,
+      "administrative_region": 22
+    }
+  },
+  {
+    "model": "location.markofquality",
+    "pk": 22,
+    "fields": {
+      "name": "Lay's",
+      "country": 27,
+      "geographic_region": 14,
+      "administrative_region": 29
     }
   }
 ]
