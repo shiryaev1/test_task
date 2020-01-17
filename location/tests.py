@@ -9,7 +9,7 @@ from location.models import (
 
 
 def create_country():
-    country = Country.objects.create(name='TestCountry')
+    country = Country.objects.create(name='Test Country')
     return country
 
 
@@ -57,7 +57,7 @@ class LocationTestCase(TestCase):
 
         response = self.client.post(
             url, {
-                'name': 'Test country'
+                'name': 'Country test'
             })
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response,
@@ -67,7 +67,7 @@ class LocationTestCase(TestCase):
 
         response = self.authenticated_client.post(
             url, {
-                'name': 'Test country'
+                'name': 'Country test'
             })
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, url)

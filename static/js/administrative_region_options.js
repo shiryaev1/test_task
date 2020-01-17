@@ -1,4 +1,4 @@
-document.querySelector('#id_geographic_region').onchange = function geAdministrativeRegion() {
+document.querySelector('#id_geographic_region').onchange = function getAdministrativeRegion() {
     let url = '/locations/load/location/';
     let xhr = new XMLHttpRequest();
     let geographicRegionId = this.value;

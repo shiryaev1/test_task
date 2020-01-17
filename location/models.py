@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
 
     class Meta:
         verbose_name = _('country')
@@ -14,7 +14,7 @@ class Country(models.Model):
 
 
 class GeographicRegion(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
     country = models.ForeignKey(Country, related_name='geographic_regions',
                                 on_delete=models.CASCADE)
 
@@ -27,7 +27,7 @@ class GeographicRegion(models.Model):
 
 
 class AdministrativeRegion(models.Model):
-    name = models.CharField(max_length=64)
+    name = models.CharField(max_length=64, unique=True)
     geographic_region = models.ForeignKey(GeographicRegion,
                                           related_name='administrative_regions',
                                           on_delete=models.CASCADE)

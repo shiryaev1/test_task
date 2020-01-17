@@ -1,6 +1,4 @@
 from django import forms
-from django.core.exceptions import ObjectDoesNotExist
-from django.http import Http404
 
 from location.models import (
     Country, MarkOfQuality,

@@ -1,4 +1,4 @@
-document.querySelector('#id_administrative_region').onchange = function getMarkRegion() {
+document.querySelector('#id_administrative_region').onchange = function getMarkOfQuality() {
     let url = '/locations/load/location/';
     let xhr = new XMLHttpRequest();
     let administrativeRegionId = this.value;

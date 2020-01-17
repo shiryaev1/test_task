@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
@@ -96,5 +97,4 @@ class LoadLocations(ListView):
         context['administrative_regions'] = self.load_administrative_regions()
         context['mark_of_qualities'] = self.load_mark_of_qualities()
         return context
-
 
