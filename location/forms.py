@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
 
 from location.models import (
@@ -92,13 +93,11 @@ class PackageCreateForm(forms.ModelForm):
 
     def set_geographic_region_queryset(self):
         if 'country' in self.data:
-            try:
-                country_id = int(self.data.get('country'))
-                self.fields['geographic_region'].queryset = GeographicRegion.objects.filter(
-                    country_id=country_id
-                ).order_by('name')
-            except (ValueError, TypeError):
-                raise Http404
+            country_id = int(self.data.get('country'))
+            self.fields['geographic_region'].queryset = GeographicRegion.objects.filter(
+                country_id=country_id
+            ).order_by('name')
+
         elif self.instance.pk:
             self.fields['geographic_region'].queryset = self.instance.country.geographic_regions.order_by(
                 'name'
@@ -106,14 +105,12 @@ class PackageCreateForm(forms.ModelForm):
 
     def set_administrative_region_queryset(self):
         if 'geographic_region' in self.data:
-            try:
-                geographic_region_id = int(self.data.get('geographic_region'))
-                self.fields[
-                    'administrative_region'].queryset = AdministrativeRegion.objects.filter(
-                        geographic_region_id=geographic_region_id
-                ).order_by('name')
-            except (ValueError, TypeError):
-                raise Http404
+            geographic_region_id = int(self.data.get('geographic_region'))
+            self.fields[
+                'administrative_region'].queryset = AdministrativeRegion.objects.filter(
+                    geographic_region_id=geographic_region_id
+            ).order_by('name')
+
         elif self.instance.pk:
             self.fields[
                 'administrative_region'].queryset = \
@@ -122,15 +119,13 @@ class PackageCreateForm(forms.ModelForm):
 
     def set_mark_of_quality_queryset(self):
         if 'administrative_region' in self.data:
-            try:
-                administrative_region_id = int(self.data.get(
-                    'administrative_region'
-                ))
-                self.fields['mark_of_quality'].queryset = MarkOfQuality.objects.filter(
-                        administrative_region_id=administrative_region_id
-                ).order_by('name')
-            except (ValueError, TypeError):
-                raise Http404
+            administrative_region_id = int(self.data.get(
+                'administrative_region'
+            ))
+            self.fields['mark_of_quality'].queryset = MarkOfQuality.objects.filter(
+                    administrative_region_id=administrative_region_id
+            ).order_by('name')
+
         elif self.instance.pk:
             self.fields[
                 'mark_of_quality'].queryset = self.instance.administrative_region.mark_of_qualities.order_by(

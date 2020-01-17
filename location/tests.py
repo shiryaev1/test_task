@@ -4,7 +4,7 @@ from django.test import TestCase, Client
 from location.models import (
     Country, GeographicRegion,
     AdministrativeRegion,
-    MarkOfQuality, Package
+    MarkOfQuality
 )
 
 
@@ -37,17 +37,6 @@ def create_mark_of_quality():
         administrative_region=create_administrative_region()
     )
     return mark_of_quality
-
-
-def create_package():
-    package = Package.objects.create(
-        name='TestPackage',
-        country=create_country(),
-        geographic_region=create_geographic_region(),
-        administrative_region=create_administrative_region(),
-        mark_of_quality=create_mark_of_quality()
-    )
-    return package
 
 
 class LocationTestCase(TestCase):
@@ -169,7 +158,7 @@ class LocationTestCase(TestCase):
                 'country': create_country(),
                 'geographic_region': create_geographic_region(),
                 'administrative_region': create_administrative_region(),
-                'package': create_package()
+                'mark_of_quality': create_mark_of_quality()
             })
 
         self.assertEqual(response.status_code, 302)
@@ -181,10 +170,10 @@ class LocationTestCase(TestCase):
         response = self.authenticated_client.post(
             url, {
                 'name': 'Test package',
-                'country': create_country(),
-                'geographic_region': create_geographic_region(),
-                'administrative_region': create_administrative_region(),
-                'package': create_package()
+                'country_id': create_country(),
+                'geographic_region_id': create_geographic_region(),
+                'administrative_region_id': create_administrative_region(),
+                'mark_of_quality_id': create_mark_of_quality(),
             })
 
         self.assertEqual(response.status_code, 200)
