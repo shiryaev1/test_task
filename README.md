@@ -1,6 +1,26 @@
 # test_task
 
 
+Install project:
+
+    $ git clone https://github.com/shiryaev1/test_task.git
+    $ cd test_task
+
+Create database:
+
+    $ sudo -u postgres psql postgres
+    =# CREATE DATABASE test_db;
+    
+Install a virtual environment:
+
+    $ virtualenv venv
+    $ source venv/bin/activate 
+
+Install requirements:
+
+    pip install -r requirements.txt
+
+
 Migrate the database before the first run:
 
     python manage.py migrate
@@ -9,9 +29,6 @@ Create a superuser:
 
     python manage.py createsuperuser
 
-Install requirements:
-
-    pip install -r requirements.txt
 
 Load initial data for locations:
 

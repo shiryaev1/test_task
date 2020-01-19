@@ -8,41 +8,26 @@ from location.models import (
 )
 
 
-def create_country():
-    country = Country.objects.create(name='Test Country')
-    return country
-
-
-def create_geographic_region():
-    geographic_region = GeographicRegion.objects.create(
-        name='TestGeographicRegion',
-        country=create_country()
-    )
-    return geographic_region
-
-
-def create_administrative_region():
-    administrative_region = AdministrativeRegion.objects.create(
-        name='TestAdministrativeRegion',
-        geographic_region=create_geographic_region()
-    )
-    return administrative_region
-
-
-def create_mark_of_quality():
-    mark_of_quality = MarkOfQuality.objects.create(
-        name='TestMarkOfQuality',
-        country=create_country(),
-        geographic_region=create_geographic_region(),
-        administrative_region=create_administrative_region()
-    )
-    return mark_of_quality
-
-
 class LocationTestCase(TestCase):
-    def setUp(self):
-        super().setUp()
+    @classmethod
+    def setUpTestData(cls):
+        cls.country = Country.objects.create(name='TestCountry')
+        cls.geographic_region = GeographicRegion.objects.create(
+            name='TestGeographicRegion',
+            country=cls.country
+        )
+        cls.administrative_region = AdministrativeRegion.objects.create(
+            name='TestAdministrativeRegion',
+            geographic_region=cls.geographic_region
+        )
+        cls.mark_of_quality = MarkOfQuality.objects.create(
+            name='TestMarkOfQuality',
+            country=cls.country,
+            geographic_region=cls.geographic_region,
+            administrative_region=cls.administrative_region
+        )
 
+    def setUp(self):
         username, password = 'admin', 'secret'
         User.objects.create_user(username=username, password=password)
 
@@ -79,7 +64,7 @@ class LocationTestCase(TestCase):
         response = self.client.post(
             url, {
                 'name': 'Test geographic region',
-                'country': create_country()
+                'country': self.country
             })
 
         self.assertEqual(response.status_code, 302)
@@ -91,7 +76,7 @@ class LocationTestCase(TestCase):
         response = self.authenticated_client.post(
             url, {
                 'name': 'Test geographic region',
-                'country': create_country()
+                'country': self.country
             })
 
         self.assertEqual(response.status_code, 200)
@@ -103,7 +88,7 @@ class LocationTestCase(TestCase):
         response = self.client.post(
             url, {
                 'name': 'Test administrative region',
-                'geographic_region': create_geographic_region()
+                'geographic_region': self.geographic_region
             })
 
         self.assertEqual(response.status_code, 302)
@@ -115,7 +100,8 @@ class LocationTestCase(TestCase):
         response = self.authenticated_client.post(
             url, {
                 'name': 'Test administrative region',
-                'geographic_region': create_geographic_region()
+                'geographic_region': self.geographic_region
+
             })
 
         self.assertEqual(response.status_code, 200)
@@ -127,9 +113,9 @@ class LocationTestCase(TestCase):
         response = self.client.post(
             url, {
                 'name': 'Test mark of quality',
-                'country': create_country(),
-                'geographic_region': create_geographic_region(),
-                'administrative_region': create_administrative_region()
+                'country': self.country,
+                'geographic_region': self.geographic_region,
+                'administrative_region': self.administrative_region
             })
 
         self.assertEqual(response.status_code, 302)
@@ -141,9 +127,9 @@ class LocationTestCase(TestCase):
         response = self.authenticated_client.post(
             url, {
                 'name': 'Test mark of quality',
-                'country': create_country(),
-                'geographic_region': create_geographic_region(),
-                'administrative_region': create_administrative_region()
+                'country': self.country,
+                'geographic_region': self.geographic_region,
+                'administrative_region': self.administrative_region
             })
 
         self.assertEqual(response.status_code, 200)
@@ -155,10 +141,10 @@ class LocationTestCase(TestCase):
         response = self.client.post(
             url, {
                 'name': 'Test package',
-                'country': create_country(),
-                'geographic_region': create_geographic_region(),
-                'administrative_region': create_administrative_region(),
-                'mark_of_quality': create_mark_of_quality()
+                'country': self.country,
+                'geographic_region': self.geographic_region,
+                'administrative_region': self.administrative_region,
+                'mark_of_quality': self.mark_of_quality
             })
 
         self.assertEqual(response.status_code, 302)
@@ -170,10 +156,11 @@ class LocationTestCase(TestCase):
         response = self.authenticated_client.post(
             url, {
                 'name': 'Test package',
-                'country_id': create_country(),
-                'geographic_region_id': create_geographic_region(),
-                'administrative_region_id': create_administrative_region(),
-                'mark_of_quality_id': create_mark_of_quality(),
+                'country_id': self.country,
+                'geographic_region_id': self.geographic_region,
+                'administrative_region_id': self.administrative_region,
+                'mark_of_quality_id': self.mark_of_quality
             })
 
         self.assertEqual(response.status_code, 200)
+
