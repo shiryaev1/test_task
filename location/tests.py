@@ -163,4 +163,3 @@ class LocationTestCase(TestCase):
             })
 
         self.assertEqual(response.status_code, 200)
-

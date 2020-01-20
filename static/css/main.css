@@ -98,7 +98,6 @@ iframe {
 	border: none !important;
 }
 
-
 .container {
 	max-width: 1200px;
 }
@@ -204,13 +203,11 @@ input.input100 {
   height: 40px;
 }
 
-
 textarea.input100 {
   min-height: 110px;
   padding-top: 9px;
   padding-bottom: 13px;
 }
-
 
 .input100:focus + .focus-input100::before {
   width: 100%;
@@ -219,7 +216,6 @@ textarea.input100 {
 .has-val.input100 + .focus-input100::before {
   width: 100%;
 }
-
 
 .container-contact100-form-btn {
   display: -webkit-box;
@@ -343,11 +339,9 @@ textarea.input100 {
   }
 }
 
-
 .validate-input {
   position: relative;
 }
-
 
 #base_container {
   position: relative;
