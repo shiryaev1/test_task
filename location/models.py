@@ -3,7 +3,7 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Country(models.Model):
-    name = models.CharField(max_length=64, unique=True)
+    name = models.CharField(max_length=64, unique=True, db_index=True)
 
     class Meta:
         verbose_name = _('country')
@@ -15,8 +15,11 @@ class Country(models.Model):
 
 class GeographicRegion(models.Model):
     name = models.CharField(max_length=64, unique=True)
-    country = models.ForeignKey(Country, related_name='geographic_regions',
-                                on_delete=models.CASCADE)
+    country = models.ForeignKey(
+        Country,
+        related_name='geographic_regions',
+        on_delete=models.CASCADE
+    )
 
     class Meta:
         verbose_name = _('geographic region')
@@ -28,9 +31,10 @@ class GeographicRegion(models.Model):
 
 class AdministrativeRegion(models.Model):
     name = models.CharField(max_length=64, unique=True)
-    geographic_region = models.ForeignKey(GeographicRegion,
-                                          related_name='administrative_regions',
-                                          on_delete=models.CASCADE)
+    geographic_region = models.ForeignKey(
+        GeographicRegion,
+        related_name='administrative_regions',
+        on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('administrative region')
@@ -48,7 +52,8 @@ class MarkOfQuality(models.Model):
         on_delete=models.CASCADE
     )
     administrative_region = models.ForeignKey(
-        AdministrativeRegion, related_name='mark_of_qualities',
+        AdministrativeRegion,
+        related_name='mark_of_qualities',
         on_delete=models.CASCADE
     )
 
@@ -62,6 +67,7 @@ class MarkOfQuality(models.Model):
 
 class Package(models.Model):
     name = models.CharField(max_length=64)
+
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
     geographic_region = models.ForeignKey(GeographicRegion,
                                           on_delete=models.CASCADE)

@@ -3,15 +3,22 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, ListView
 
-from location.forms import (
+
+from .forms import (
     CountryCreateForm,
     AdministrativeRegionCreateForm,
     MarkOfQualityCreateForm,
     GeographicRegionCreateForm,
     PackageCreateForm
 )
-from location.models import Country, GeographicRegion, AdministrativeRegion, \
-    MarkOfQuality, Package
+
+from .models import (
+    Country,
+    GeographicRegion,
+    AdministrativeRegion,
+    MarkOfQuality,
+    Package
+)
 
 
 class CountryCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):

@@ -105,15 +105,15 @@ class PackageCreateForm(forms.ModelForm):
         if 'geographic_region' in self.data:
             geographic_region_id = int(self.data.get('geographic_region'))
             self.fields[
-                'administrative_region'].queryset = AdministrativeRegion.objects.filter(
+                'administrative_region'
+            ].queryset = AdministrativeRegion.objects.filter(
                     geographic_region_id=geographic_region_id
             ).order_by('name')
 
         elif self.instance.pk:
             self.fields[
-                'administrative_region'].queryset = \
-                self.instance.geographic_region.administrative_regions.order_by(
-                    'name')
+                'administrative_region',
+            ].queryset = self.instance.geographic_region.administrative_regions.order_by('name')
 
     def set_mark_of_quality_queryset(self):
         if 'administrative_region' in self.data:

@@ -5,7 +5,6 @@ from django.test import Client, TestCase
 
 class AuthenticationTestCase(TestCase):
     def setUp(self):
-        super().setUp()
 
         self.redirect_url = '/locations/package/create/'
 
