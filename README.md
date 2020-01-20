@@ -10,6 +10,11 @@ Create database:
 
     $ sudo -u postgres psql postgres
     =# CREATE DATABASE test_db;
+    =# CREATE USER developer WITH PASSWORD '123123qwe';
+    =# ALTER ROLE developer SET client_encoding TO 'utf8';
+    =# ALTER ROLE developer SET default_transaction_isolation TO 'read committed';
+    =# ALTER ROLE developer SET timezone TO 'UTC';
+    =# GRANT ALL PRIVILEGES ON DATABASE test_db TO developer;
     
 Install a virtual environment:
 

@@ -1,24 +1,3 @@
-@font-face {
-  font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf');
-}
-
-@font-face {
-  font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf');
-}
-
-@font-face {
-  font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf');
-}
-
-@font-face {
-  font-family: Poppins-SemiBold;
-  src: url('../fonts/poppins/Poppins-SemiBold.ttf');
-}
-
-
 * {
 	margin: 0px;
 	padding: 0px;
@@ -30,7 +9,6 @@ body, html {
 	font-family: Poppins-Regular, sans-serif;
 }
 
-/*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;
 	font-size: 14px;
@@ -55,7 +33,6 @@ a:hover {
 	text-decoration: none;
 }
 
-/*---------------------------------------------*/
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
@@ -73,8 +50,6 @@ ul, li {
 	list-style-type: none;
 }
 
-
-/*---------------------------------------------*/
 input {
 	outline: none;
 	border: none;
@@ -109,7 +84,6 @@ textarea:-moz-placeholder { color: #adadad;}
 textarea::-moz-placeholder { color: #adadad;}
 textarea:-ms-input-placeholder { color: #adadad;}
 
-/*---------------------------------------------*/
 button {
 	outline: none !important;
 	border: none;
@@ -125,7 +99,6 @@ iframe {
 }
 
 
-/*---------------------------------------------*/
 .container {
 	max-width: 1200px;
 }
@@ -306,20 +279,6 @@ textarea.input100 {
   line-height: 1.2;
 }
 
-/*dsfsdfsdfffffffffffffffffffffffffffffffffffff*/
-/*.select2-container--open .select2-dropdown {*/
-/*  z-index: 1251;*/
-/*  border: 0px solid #e5e5e5;*/
-/*  border-radius: 0px;*/
-/*  background-color: white;*/
-
-  /*box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.2);*/
-  /*-moz-box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.2);*/
-  /*-webkit-box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.2);*/
-  /*-o-box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.2);*/
-  /*-ms-box-shadow: 0 3px 10px 0px rgba(0, 0, 0, 0.2);*/
-/*}*/
-
 .select2-dropdown--above {top: -30px;}
 .select2-dropdown--below {top: 8px;}
 
@@ -345,7 +304,6 @@ textarea.input100 {
   background: linear-gradient(right, #00dbde, #fc00ff);
   color: white;
 }
-/**/
 .select2-results__options {
   font-family: Poppins-Regular;
   font-size: 15px;
@@ -361,7 +319,6 @@ textarea.input100 {
   color: #333333;
   line-height: 1.2;
 }
-/*dsfffffffffffffffffffffffffffffffff*/
 .wrap-contact100-form-btn:hover .contact100-form-bgbtn {
   left: 0;
 }
