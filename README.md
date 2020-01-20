@@ -11,9 +11,6 @@ Create database:
     $ sudo -u postgres psql postgres
     =# CREATE DATABASE test_db;
     =# CREATE USER developer WITH PASSWORD '123123qwe';
-    =# ALTER ROLE developer SET client_encoding TO 'utf8';
-    =# ALTER ROLE developer SET default_transaction_isolation TO 'read committed';
-    =# ALTER ROLE developer SET timezone TO 'UTC';
     =# GRANT ALL PRIVILEGES ON DATABASE test_db TO developer;
     =# ALTER USER developer CREATEDB;
     
@@ -43,8 +40,7 @@ Load initial data for locations:
 
 ### Running tests
 
-    (venv) $ python manage.py test location.tests
-    (venv) $ python manage.py test account.tests
+    (venv) $ python manage.py test
     
 
 ### Running the application
