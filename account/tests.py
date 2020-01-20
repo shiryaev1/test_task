@@ -4,17 +4,21 @@ from django.test import Client, TestCase
 
 
 class AuthenticationTestCase(TestCase):
+    @staticmethod
+    def make_user(username, email, password):
+        user = User.objects.create_superuser(username, email, password)
+        return user
+
     def setUp(self):
 
         self.redirect_url = '/locations/package/create/'
 
-        self.username = 'Admin'
-        self.password = 'secret'
+        self.username, self.email, self.password = 'admin', 'admin@gmail.com', 'secret'
 
-        self.authenticated_user = User.objects.create_user(
+        self.user = self.make_user(
             username=self.username,
-            email='info@throgate.eu',
-            password=self.password,
+            email=self.email,
+            password=self.password
         )
 
         self.authenticated_client = Client()

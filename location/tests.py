@@ -27,9 +27,14 @@ class LocationTestCase(TestCase):
             administrative_region=cls.administrative_region
         )
 
+    @staticmethod
+    def make_user(username, email, password):
+        user = User.objects.create_superuser(username, email, password)
+        return user
+
     def setUp(self):
-        username, password = 'admin', 'secret'
-        User.objects.create_user(username=username, password=password)
+        username, email, password = 'admin', 'email@gmail.com', 'secret'
+        self.user = self.make_user(username, email, password)
 
         self.authenticated_client = Client()
         self.authenticated_client.login(username=username, password=password)
