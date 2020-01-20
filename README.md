@@ -15,6 +15,7 @@ Create database:
     =# ALTER ROLE developer SET default_transaction_isolation TO 'read committed';
     =# ALTER ROLE developer SET timezone TO 'UTC';
     =# GRANT ALL PRIVILEGES ON DATABASE test_db TO developer;
+    =# ALTER USER developer CREATEDB;
     
 Install a virtual environment:
 
